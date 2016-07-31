@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/background_main"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/background_title" >
+
+        <TextView
+            android:id="@+id/textView1"
+            style="@style/main_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="场景" />
+
+        <Button
+            android:id="@+id/homevideo_backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/quit_selector" />
+
+        <TextView
+            android:id="@+id/homevideo_defendText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="已布防" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="fill_parent"
+        android:layout_height="280dp"
+        android:layout_gravity="center_vertical"
+        android:background="#000000"
+        android:padding="5dp"
+        android:src="@android:drawable/alert_dark_frame" />
+
+    <TextView
+        android:id="@+id/wsd_TextView"
+        android:layout_width="101dp"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textColor="#D2691E"
+        android:textSize="20dp" />
+
+    <RelativeLayout
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="10dp" >
+
+        <Button
+            android:id="@+id/camera_leftButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/controlleft_selector" />
+
+        <Button
+            android:id="@+id/camera_rightButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/controlright_selector" />
+
+        <Button
+            android:id="@+id/camera_downButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/controlbottom_selector" />
+
+        <Button
+            android:id="@+id/camera_turnButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@drawable/pause_selector" />
+
+        <Button
+            android:id="@+id/camera_upButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/camera_turnButton"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/controltop_selector" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/camera_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="80dp"
+            android:text="监控状态"
+            android:textColor="#90EE90"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/video_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="51dp"
+            android:text="录音状态"
+            android:textColor="#90EE90"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/homevideo_defendText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="已布防"
+            android:textColor="#D2691E"
+            android:textSize="20dp"
+            android:visibility="gone" />
+
+        <ToggleButton
+            android:id="@+id/tbn_audio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/openvoie_selector"
+            android:textOff=""
+            android:textOn="" />
+
+        <ToggleButton
+            android:id="@+id/tbn_talk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/opentalk_selector"
+            android:textOff=""
+            android:textOn="" />
+
+        <ToggleButton
+            android:id="@+id/tbn_record"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/openvideo_selector"
+            android:textOff=""
+            android:textOn="" />
+
+        <Button
+            android:id="@+id/homevideo_defendButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/chefang_selector" />
+
+        <ToggleButton
+            android:id="@+id/queryWSD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text=""
+            android:textOff="关闭"
+            android:textOn="查询" />
+        <ToggleButton
+            android:id="@+id/open"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text=""
+            android:textOff="关闭报警"
+            android:textOn="打开报警" />
+    </LinearLayout>
+
+</LinearLayout>
