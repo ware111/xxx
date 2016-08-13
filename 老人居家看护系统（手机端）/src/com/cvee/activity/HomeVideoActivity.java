@@ -16,11 +16,13 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.hardware.Camera;
 import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaRecorder;
@@ -32,10 +34,13 @@ import android.text.format.Time;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,6 +49,7 @@ import android.widget.ToggleButton;
 import com.cvee.R;
 import com.cvee.socket.UDPClientSocket;
 import com.cvee.sqlite.Mysqlite;
+import com.cvee.utils.SysApplication;
 import com.cvee.utils.Utils;
 import com.misc.objc.NSData;
 import com.misc.objc.NSNotification;
@@ -143,15 +149,60 @@ public class HomeVideoActivity extends Activity implements OnTouchListener{
 			return true;
 		}
 	}
-	
+	class MyView extends SurfaceView implements SurfaceHolder.Callback{
+		SurfaceHolder holder;
+		Camera photo;
+		public MyView(Context context, Camera photo) {
+			super(context);
+		    this.photo = photo;
+		    holder = getHolder();
+		    holder.addCallback(this);
+			// TODO Auto-generated constructor stub
+		}
+
+		@Override
+		public void surfaceCreated(SurfaceHolder holder) {
+			// TODO Auto-generated method stub
+			photo.setDisplayOrientation(90);
+			try {
+				photo.setPreviewDisplay(holder);
+				photo.startPreview();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		@Override
+		public void surfaceChanged(SurfaceHolder holder, int format, int width,
+				int height) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void surfaceDestroyed(SurfaceHolder holder) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	}
+	FrameLayout layout;
+	Camera photo;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_homevideo);
+		layout = (FrameLayout)findViewById(R.id.imageView1);
+		photo = Camera.open();
+		MyView view = new MyView(getApplication(), photo);
+		layout.addView(view);
 		initView();
 		// 开启服务器 
         UDPServer server = new UDPServer();
         server.start();
+        SysApplication exit = SysApplication.getInstance();
+        exit.addActivity(this);
 		try {
 			camera = new IpCamera("",com.cvee.utils.Configuration.IPCAMERA_NAME ,
 					com.cvee.utils.Configuration.jip,
@@ -667,13 +718,13 @@ public class HomeVideoActivity extends Activity implements OnTouchListener{
 		rurnButton = (Button)findViewById(R.id.camera_turnButton);
 		defendButton = (Button)findViewById(R.id.homevideo_defendButton);
 		defendText = (TextView)findViewById(R.id.homevideo_defendText);
-		wsd =(TextView)findViewById(R.id.wsd_TextView);
+		//wsd =(TextView)findViewById(R.id.wsd_TextView);
 		backButton = (Button)findViewById(R.id.homevideo_backButton);
 		backButton.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				Utils.showExitDialog(HomeVideoActivity.this);
+			   Utils.showExitDialog(HomeVideoActivity.this);
 			}
 		});	
 		//*****************************

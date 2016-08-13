@@ -55,6 +55,7 @@ public class MainActivity extends Activity {
                   edit.setText(news);
 			}
 		});
+		//bindService(service, conn, flags)
 	}
 	
 	class MyThread extends Thread{

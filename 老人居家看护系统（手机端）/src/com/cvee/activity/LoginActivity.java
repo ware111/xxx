@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.cvee.R;
 import com.cvee.utils.Configuration;
+import com.cvee.utils.SysApplication;
 import com.cvee.utils.Utils;
 /**
  * 描述：登陆界面
@@ -43,12 +44,14 @@ public class LoginActivity extends Activity {
 		.build());
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
-		if (!Utils.checkNet(LoginActivity.this)) {
-			Utils.AlertNetError(LoginActivity.this);
-			return;
-		}else{
+//		if (!Utils.checkNet(LoginActivity.this)) {
+//			Utils.AlertNetError(LoginActivity.this);
+//			return;
+//		}else{
 			initView();
-		}
+//		}
+	    SysApplication exit = SysApplication.getInstance();
+	    exit.addActivity(this);
 	}
 	/*
 	 * 描述：实例化控件 
@@ -78,31 +81,31 @@ public class LoginActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				String wip = wipEdit.getText().toString().trim();
-				String jip = jipEdit.getText().toString().trim();
-				String name = nameEdit.getText().toString().trim();
-				String password = passwordEdit.getText().toString().trim();
-				String port = portEdit.getText().toString().trim();
-				if (wip.equals("")|jip.equals("")|name.equals("")|
-						password.equals("")|port.equals("")) {
-					Toast.makeText(LoginActivity.this, "请把信息填写完整！", Toast.LENGTH_SHORT).show();
-				}else{
-					Configuration.wip = wip;
-					Configuration.jip = jip;
-					Configuration.name = name;
-					Configuration.password = password;
-					Configuration.port = port;
-					//保存用户信息
-					Editor editor = sharedPreferences.edit();
-					editor.putString("wip", Configuration.wip);
-					editor.putString("jip", Configuration.jip);
-					editor.putString("name", Configuration.name);
-					editor.putString("password", Configuration.password);
-					editor.putString("port", Configuration.port);
-					editor.commit();
+//				String wip = wipEdit.getText().toString().trim();
+//				String jip = jipEdit.getText().toString().trim();
+//				String name = nameEdit.getText().toString().trim();
+//				String password = passwordEdit.getText().toString().trim();
+//				String port = portEdit.getText().toString().trim();
+//				if (wip.equals("")|jip.equals("")|name.equals("")|
+//						password.equals("")|port.equals("")) {
+//					Toast.makeText(LoginActivity.this, "请把信息填写完整！", Toast.LENGTH_SHORT).show();
+//				}else{
+//					Configuration.wip = wip;
+//					Configuration.jip = jip;
+//					Configuration.name = name;
+//					Configuration.password = password;
+//					Configuration.port = port;
+//					//保存用户信息
+//					Editor editor = sharedPreferences.edit();
+//					editor.putString("wip", Configuration.wip);
+//					editor.putString("jip", Configuration.jip);
+//					editor.putString("name", Configuration.name);
+//					editor.putString("password", Configuration.password);
+//					editor.putString("port", Configuration.port);
+//					editor.commit();
 					Intent intent = new Intent(LoginActivity.this,MainActivity.class);
 					startActivity(intent);
-				}
+				//}
 			}
 		});
 	}
